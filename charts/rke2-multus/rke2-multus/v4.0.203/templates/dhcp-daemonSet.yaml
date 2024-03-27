@@ -26,10 +26,10 @@ spec:
       {{- end }}
       nodeSelector: {{- toYaml .Values.labels.nodeSelector | nindent 8 }}
       tolerations:
-        - operator: Exists
-          effect: NoSchedule
-        - operator: Exists
-          effect: NoExecute
+      - operator: Exists
+        effect: NoSchedule
+      - operator: Exists
+        effect: NoExecute
       initContainers:
       - name: kube-{{ .Chart.Name }}-dhcp-cleanup
         image: {{ template "system_default_registry" . }}{{ .Values.dhcpDaemonSet.image.repository }}:{{ .Values.dhcpDaemonSet.image.tag }}
